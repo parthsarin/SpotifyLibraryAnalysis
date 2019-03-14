@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 The command line executable to analyze someone's Spotify library.
 """
@@ -114,7 +115,7 @@ def table_to_str(title, headers, table, header_width=None):
 			widths += (len(header) + 1,)
 
 	output = title + ':' + '\n' # The first line
-	
+
 	# Headers
 	for i, header in enumerate(headers):
 		if not i == len(headers)-1:
