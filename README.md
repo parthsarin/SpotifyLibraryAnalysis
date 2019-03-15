@@ -11,7 +11,7 @@ pip install git+https://github.com/plamere/spotipy.git --upgrade
 The program can be run as a shell script and `python main.py -h` prints out the help page:
 
 ```
-usage: main.py [-h] [-u USERNAME] [-n NUM_SONGS] [-y] [--obscure]
+usage: main.py [-h] [-u USERNAME] [-n NUM_SONGS] [-y] [--obscure] [-a]
                [-o FILENAME]
 
 Analyzes a Spotify library.
@@ -27,6 +27,7 @@ optional arguments:
                         library.
   --obscure             Analyzes how obscure the songs in someone's library
                         are.
+  -a, --artists         Analyzes the artist distribution in someone's library.
   -o FILENAME           A file to print the output to.
 ```
 

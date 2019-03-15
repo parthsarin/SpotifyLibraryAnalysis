@@ -16,6 +16,7 @@ import spotipy.util as util # for authorized requests
 ### In-House Imports ###
 import years
 import obscurity
+import artists
 
 AUTH_SCOPE = 'user-library-read'
 CLIENT_ID = 'd4ce89eb38ee41c7836e9820875b6885'
@@ -31,6 +32,8 @@ parser.add_argument('-y', '--years', action='store_true', default=False, \
 	help="Analyzes the year distribution of the songs in the library.")
 parser.add_argument('--obscure', action='store_true', default=False, \
 	help="Analyzes how obscure the songs in someone's library are.")
+parser.add_argument('-a', '--artists', action='store_true', default=False, \
+	help="Analyzes the artist distribution in someone's library.")
 parser.add_argument('-o', metavar='FILENAME', type=str, \
 	help="A file to print the output to.")
 
@@ -161,6 +164,7 @@ if __name__ == '__main__':
 		# Get which functions of the program are enabled
 		analyze_years = args.years
 		analyze_obscurity = args.obscure
+		analyze_artists = args.artists
 
 		if analyze_years:
 			d = years.analyze(sp, songs)
@@ -179,6 +183,11 @@ if __name__ == '__main__':
 			print(printable_table)
 			if output_file:
 				_write_to_file(printable_table, output_file)
+
+		if analyze_artists:
+			title, headers, distribution, header_width = artists.analyze(sp, songs)
+			printable_table = table_to_str(title, headers, distribution, header_width=header_width)
+			print(printable_table)
 
 	else:
 		raise ValueError("The authentication was unsuccessful.")
